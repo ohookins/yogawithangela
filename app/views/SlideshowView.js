@@ -5,12 +5,16 @@ define(function(require, exports, module) {
 
     // Import additional modules to be used in this view 
     var View = require('famous/core/View');
+    var Scrollview = require('famous/views/Scrollview');
     var Surface = require('famous/core/Surface');
     var ImageSurface = require('famous/surfaces/ImageSurface');
     var Modifier = require('famous/core/Modifier');
     var Transitionable = require("famous/transitions/Transitionable");
     var TransitionableTransform = require ('famous/transitions/TransitionableTransform');
     var Transform = require('famous/core/Transform');
+
+    // Image data
+    var SlideData = require('data/SlideData');
 
     // Constructor function for our SlideshowView class
     function SlideshowView() {
@@ -29,47 +33,35 @@ define(function(require, exports, module) {
 
     // Private functions
     function _createImages() {
-        var images = [
-            "img/9065-web.jpg",
-            "img/9078-web.jpg",
-            "img/9081-web.jpg",
-            "img/9083-web.jpg",
-            "img/9089-web.jpg"
-            ],
-            imageWidth = 500,
-            imageHeight = 350;
-
         // Black background behind photos
         this.add(new Surface({
             size: [undefined, undefined],
             classes: ["black-bg"]
         }));
 
-        // Image creation and positioning
-        for (var i = 0; i < images.length; i++) {
+        // Image creation for the scrollview
+        var surfaces = [];
+        for (var i = 0; i < SlideData.imageURLs.length; i++) {
             // Load the image into a surface
             var imageSurface = new ImageSurface({
-                size: [imageWidth, imageHeight]
+                size: [SlideData.imageWidth, SlideData.imageHeight]
             })
-            imageSurface.setContent(images[i]);
+            imageSurface.setContent(SlideData.imageURLs[i]);
 
-            // Set up a smooth transition left along the x-axis
-            var slideLeftWithShift = new TransitionableTransform();
-            slideLeftWithShift.setTranslate(
-                [-imageWidth*2, 0, 0],
-                {duration: 60000}
-            );
-            var slideModifier = new Modifier({
-                transform: slideLeftWithShift
-            });
-
-            // Set up its initial placement on the x-axis
-            var posModifier = new Modifier({
-                transform: Transform.translate(i*imageWidth, 0, 0)
-            });
-
-            this.add(posModifier).add(slideModifier).add(imageSurface);
+            surfaces.push(imageSurface);
         }
+
+        // Create the scrollview
+        scrollview = new Scrollview({direction:0});
+        scrollview.sequenceFrom(surfaces);
+
+        // Set up the scrolling
+        var time = (new Date).getTime();
+        scrollview._scroller.positionFrom(function(){
+            var position = (((new Date).getTime() - time) / 70.0) % ((SlideData.imageURLs.length*SlideData.imageWidth) - this.getSize()[0] - 220);
+            return position;
+        });
+        this.add(scrollview);
     }
 
     module.exports = SlideshowView;
