@@ -9,7 +9,7 @@ define(function(require, exports, module) {
     var ContainerSurface = require('famous/surfaces/ContainerSurface');
     var Modifier = require('famous/core/Modifier');
     var Transform = require('famous/core/Transform');
-    var RenderController = require('famous/views/RenderController');
+    var RenderNode = require('famous/core/RenderNode');
 
     // Image data
     var SlideData = require('data/SlideData');
@@ -22,6 +22,8 @@ define(function(require, exports, module) {
         // Applies View's constructor function to SlideshowView class
         View.apply(this, arguments);
 
+        this.currentImage = 0;
+
         _createImages.call(this);
     }
 
@@ -32,15 +34,25 @@ define(function(require, exports, module) {
     // Default options for SlideshowView class
     SlideshowView.DEFAULT_OPTIONS = {};
 
-    // Private functions
+    // Define your helper functions and prototype methods here
+    SlideshowView.prototype.showSlide = function(slideIndex) {
+        slideIndex = slideIndex % SlideData.imageURLs.length;
+        var slideView = new SlideView(SlideData.imageURLs[slideIndex]);
+
+        // Trigger the next slide in the slideshow
+        slideView.on('done', function(event) {
+            this.showSlide(slideIndex + 1)
+        }.bind(this));
+        this.renderNode.set(slideView);
+    };
+
     function _createImages() {    
         var container = new ContainerSurface({
-                size: [1024, 300],
-                properties: {
-                    overflow: 'hidden'
-                }
-            }),
-            renderController = new RenderController();
+            size: [1024, 300],
+            properties: {
+                overflow: 'hidden'
+            }
+        });
 
         // Black background behind photos
         this.add(new Surface({
@@ -48,9 +60,11 @@ define(function(require, exports, module) {
             classes: ["black-bg"]
         }));
 
-        // Add the image to the viewport container
-        var slideView = new SlideView(SlideData.imageURLs[3]);
-        container.add(slideView);
+        // RenderNode for swapping content
+        this.renderNode = new RenderNode();
+        container.add(this.renderNode);
+
+        this.showSlide(0);
 
         this.add(new Modifier({
             transform: Transform.translate(0,0,1),

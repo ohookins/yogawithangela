@@ -5,11 +5,9 @@ define(function(require, exports, module) {
 
     // Import additional modules to be used in this view 
     var View = require('famous/core/View');
-    var Surface = require('famous/core/Surface');
     var ImageSurface = require('famous/surfaces/ImageSurface');
     var Transform = require('famous/core/Transform');
     var Modifier = require('famous/core/Modifier');
-    var StateModifier = require('famous/modifiers/StateModifier');
     var Transitionable = require("famous/transitions/Transitionable");
 
     // Constructor function for our SlideView class
@@ -18,7 +16,15 @@ define(function(require, exports, module) {
         // Applies View's constructor function to SlideView class
         View.apply(this, arguments);
 
-        _createImage.call(this, image);
+        // Constants
+        this.startOffset        = -150;
+        this.endOffset          = -300;
+        this.fadeInDuration     = 1000;
+        this.slideDuration      = 5000;
+        this.fadeOutDuration    = 1000;
+        this.imageName          = image;
+
+        _createImage.call(this);
     }
 
     // Establishes prototype chain for SlideView class to inherit from View
@@ -29,49 +35,70 @@ define(function(require, exports, module) {
     SlideView.DEFAULT_OPTIONS = {};
 
     // Define your helper functions and prototype methods here
-    SlideView.prototype.transitionComplete = function() {
-        window.console.log("transition complete");
-        var faderTrans = new Transitionable(1.0);
-        faderTrans.set(0.0, {
-            duration: 1000
-        });
+    SlideView.prototype.fadeIn = function() {
+        var faderTrans = new Transitionable(0.0);
+        faderTrans.set(
+            1.0,
+            {
+                duration: this.fadeInDuration
+            },
+            this.slide.bind(this)
+        );
 
-        this.faderModifier.opacityFrom(function() {
+        this.dynamicModifier.opacityFrom(function() {
             return faderTrans.get();
         });
     };
 
-    function _createImage(image) {
-        var startOffset = -150,
-            endOffset = -350,
-            imageSurface = new ImageSurface({
-                size: [1024, 700]
-            });
-        imageSurface.setContent(image);
-
-        // Set up the fade-in transition and modifier
-        var faderTrans = new Transitionable(0.0);
-        faderTrans.set(1.0, {
-            duration: 2000
-        });
-        this.faderModifier = new Modifier();
-        this.faderModifier.opacityFrom(function() {
-            return faderTrans.get();
-        });
-        
-        // Set up the position state modifier so we can add a call back to the
-        // end of the transition.
-        var posModifier = new StateModifier();
-        posModifier.setTransform(
-            Transform.translate(0, endOffset, 0),
+    SlideView.prototype.slide = function() {
+        var slideTrans = new Transitionable(0);
+        slideTrans.set(
+            this.endOffset - this.startOffset,
             {
-                curve: 'easeInOut',
-                duration: 10000
+                duration: this.slideDuration,
+                curve: 'easeInOut'
             },
-            this.transitionComplete.bind(this)
+            this.fadeOut.bind(this)
         );
 
-        this.add(this.faderModifier).add(posModifier).add(imageSurface);
+        this.dynamicModifier.transformFrom(function() {
+            return Transform.translate(0, slideTrans.get(), 0);
+        });
+    };
+
+    SlideView.prototype.fadeOut = function() {
+        var faderTrans = new Transitionable(1.0);
+        faderTrans.set(
+            0.0,
+            {
+                duration: this.fadeOutDuration
+            },
+            this.slideDone.bind(this)
+        );
+
+        this.dynamicModifier.opacityFrom(function() {
+            return faderTrans.get();
+        });
+    };
+
+    SlideView.prototype.slideDone = function() {
+        this._eventOutput.emit('done', this.imageName);
+    };
+
+    function _createImage() {
+        var imageSurface = new ImageSurface({
+                size: [1024, 700]
+            });
+        imageSurface.setContent(this.imageName);
+
+        // Initial translation from which later transitions take place
+        var posModifier = new Modifier({
+            transform: Transform.translate(0, this.startOffset, 0)
+        });
+
+        this.dynamicModifier = new Modifier();
+        this.add(posModifier).add(this.dynamicModifier).add(imageSurface);
+        this.fadeIn();
     };
 
     module.exports = SlideView;
