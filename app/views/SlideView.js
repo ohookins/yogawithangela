@@ -90,7 +90,7 @@ define(function(require, exports, module) {
 
         // Initial translation from which later transitions take place
         var posModifier = new Modifier({
-            transform: Transform.translate(0, this.startOffset, 0)
+            transform: Transform.translate(0, this.startOffset, 1)
         });
 
         this.dynamicModifier = new Modifier();

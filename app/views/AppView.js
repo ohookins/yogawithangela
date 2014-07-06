@@ -7,6 +7,7 @@ define(function(require, exports, module) {
     var SlideshowView = require('views/SlideshowView');
     var ContentView = require('views/ContentView');
     var FooterView = require('views/FooterView');
+    var ButtonView = require('views/ButtonView');
 
     function AppView() {
         View.apply(this, arguments);
@@ -19,6 +20,8 @@ define(function(require, exports, module) {
         this.layout.header.add(new SlideshowView());
         this.layout.content.add(new ContentView());
         this.layout.footer.add(new FooterView());
+
+        this.buttons = new ButtonView();
     }
 
     AppView.prototype = Object.create(View.prototype);

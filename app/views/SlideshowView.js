@@ -65,7 +65,9 @@ define(function(require, exports, module) {
         });
 
         // Black background behind photos
-        this.add(new Surface({
+        this.add(new Modifier({
+            transform: Transform.translate(0,0,1)
+        })).add(new Surface({
             size: [undefined, undefined],
             classes: ["black-bg"]
         }));
@@ -77,7 +79,7 @@ define(function(require, exports, module) {
         this.showSlide(0);
 
         this.add(new Modifier({
-            transform: Transform.translate(0,0,1),
+            transform: Transform.translate(0,0,2),
             origin: [0.5,0.5]
         })).add(this.container);
     }
