@@ -50,16 +50,6 @@ a {
   color: white;
 }
 
-@font-face {
-  font-family: "Avenir Next W04 Demi";
-  src: url("fonts/7adddd91-84e0-4423-b40e-61945189916d.eot") format("eot"), url("fonts/b0908846-3d5c-4768-af33-5f968b1da156.woff") format("woff"), url("fonts/fe1602be-28ca-467e-9cd3-7bfc586f31bc.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "AvenirNextLTW02-Regular";
-  src: url("fonts/7a1b7ae7-5c29-481f-83ac-652e932c5509.eot") format("eot"), url("fonts/3a42a252-67ff-4186-88cf-762f56719ca1.woff") format("woff"), url("fonts/dbc39ae3-2636-4653-a23e-8938bce2cf51.ttf") format("truetype");
-}
-
 input:focus {
   border: 1px solid #fa5c4f;
 }
@@ -76,13 +66,14 @@ input {
 }
 
 body, input {
-  font-family: "AvenirNextLTW02-Regular", sans-serif;
+  font-family: 'Cabin', sans-serif;
   font-size: 16px;
   line-height: 25px;
 }
 
 h1 {
-  font-size: 67px;
+  font-family: 'Cabin', sans-serif;
+  font-size: 100px;
   line-height: 109px;
   margin-bottom: 67px;
 }
@@ -99,16 +90,12 @@ h3 {
   margin-bottom: 25px;
 }
 
-h4 {
-  font-family: "Avenir Next W04 Demi";
-}
-
 h4, h5, h6, p, li, a {
   font-size: 16px;
   line-height: 25px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h2, h3, h4, h5, h6 {
   max-width: 845px;
 }
 

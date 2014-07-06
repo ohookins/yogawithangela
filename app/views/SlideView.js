@@ -17,12 +17,13 @@ define(function(require, exports, module) {
         View.apply(this, arguments);
 
         // Constants
-        this.startOffset        = -150;
-        this.endOffset          = -300;
+        this.imageURL           = image.url;
+        this.startOffset        = image.startOffset;
+        this.endOffset          = image.endOffset;
         this.fadeInDuration     = 1000;
         this.slideDuration      = 5000;
         this.fadeOutDuration    = 1000;
-        this.imageName          = image;
+        
 
         _createImage.call(this);
     }
@@ -58,7 +59,7 @@ define(function(require, exports, module) {
                 duration: this.slideDuration,
                 curve: 'easeInOut'
             },
-            this.fadeOut.bind(this)
+            function() { this._eventOutput.emit('slideDone', this.imageName) }.bind(this)
         );
 
         this.dynamicModifier.transformFrom(function() {
@@ -73,7 +74,7 @@ define(function(require, exports, module) {
             {
                 duration: this.fadeOutDuration
             },
-            this.slideDone.bind(this)
+            function() { this._eventOutput.emit('fadeOutDone', this.imageName) }.bind(this)
         );
 
         this.dynamicModifier.opacityFrom(function() {
@@ -81,15 +82,11 @@ define(function(require, exports, module) {
         });
     };
 
-    SlideView.prototype.slideDone = function() {
-        this._eventOutput.emit('done', this.imageName);
-    };
-
     function _createImage() {
         var imageSurface = new ImageSurface({
                 size: [1024, 700]
             });
-        imageSurface.setContent(this.imageName);
+        imageSurface.setContent(this.imageURL);
 
         // Initial translation from which later transitions take place
         var posModifier = new Modifier({

@@ -16,6 +16,7 @@ define(function(require, exports, module) {
 
     // Individual element class
     var SlideView = require('views/SlideView');
+    var TexttitleView = require('views/TexttitleView');
 
     // Constructor function for our SlideshowView class
     function SlideshowView() {
@@ -36,18 +37,27 @@ define(function(require, exports, module) {
 
     // Define your helper functions and prototype methods here
     SlideshowView.prototype.showSlide = function(slideIndex) {
-        slideIndex = slideIndex % SlideData.imageURLs.length;
         var slideView = new SlideView(SlideData.imageURLs[slideIndex]);
 
-        // Trigger the next slide in the slideshow
-        slideView.on('done', function(event) {
+        // For all but the last slide we do a fadeout after the slide
+        slideView.on('slideDone', function() {
+            if (slideIndex < (SlideData.imageURLs.length-1)) {
+                slideView.fadeOut();
+            } else {
+                this.container.add(new TexttitleView());
+            }
+        }.bind(this));
+
+        // Display the next slide in the slideshow when the fadeout is done
+        slideView.on('fadeOutDone', function() {
             this.showSlide(slideIndex + 1)
         }.bind(this));
+
         this.renderNode.set(slideView);
     };
 
     function _createImages() {    
-        var container = new ContainerSurface({
+        this.container = new ContainerSurface({
             size: [1024, 300],
             properties: {
                 overflow: 'hidden'
@@ -62,14 +72,14 @@ define(function(require, exports, module) {
 
         // RenderNode for swapping content
         this.renderNode = new RenderNode();
-        container.add(this.renderNode);
+        this.container.add(this.renderNode);
 
         this.showSlide(0);
 
         this.add(new Modifier({
             transform: Transform.translate(0,0,1),
             origin: [0.5,0.5]
-        })).add(container);
+        })).add(this.container);
     }
 
     module.exports = SlideshowView;
