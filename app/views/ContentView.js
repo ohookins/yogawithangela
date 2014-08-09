@@ -9,13 +9,14 @@ define(function(require, exports, module) {
     var Transform = require('famous/core/Transform');
     var StateModifier = require('famous/modifiers/StateModifier');
 
+    var TextData = require('data/TextData');
+
     // Constructor function for our ContentView class
     function ContentView() {
         // Applies View's constructor function to ContentView class
         View.apply(this, arguments);
 
-        var content = "Endorphin Yoga: ";
-        content += "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+        var content = TextData['angela'];
 
         // Backgrounds
         this.add(new Surface({
@@ -41,7 +42,7 @@ define(function(require, exports, module) {
 
         // Center it in the content view
         var centerModifier = new StateModifier({
-            origin: [0.5, 0.5]
+            origin: [0.5, 0.2]
         });
         this.add(centerModifier).add(contentSurface);
     }

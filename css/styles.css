@@ -141,10 +141,27 @@ small {
   line-height: 9px;
 }
 
+.rounded-button {
+  border-radius: 20px;
+}
+
 .button {
-  padding: 18px;
   border-radius: 3px;
-  margin: 29px 0px;
+  line-height: 30px;
+  color: white;
+  cursor: pointer;
+  background: #b3f2be; /* Old browsers */
+  background: -moz-linear-gradient(top,  #b3f2be 0%, #7a877a 2%, #475647 53%, #343834 80%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b3f2be), color-stop(2%,#7a877a), color-stop(53%,#475647), color-stop(80%,#343834)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #b3f2be 0%,#7a877a 2%,#475647 53%,#343834 80%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #b3f2be 0%,#7a877a 2%,#475647 53%,#343834 80%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #b3f2be 0%,#7a877a 2%,#475647 53%,#343834 80%); /* IE10+ */
+  background: linear-gradient(to bottom,  #b3f2be 0%,#7a877a 2%,#475647 53%,#343834 80%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3f2be', endColorstr='#343834',GradientType=0 ); /* IE6-9 */
+}
+
+.button-clicked {
+  cursor: default;
 }
 
 .backface-visible {
