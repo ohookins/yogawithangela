@@ -14,7 +14,7 @@ define(function(require, exports, module) {
 
         this.add(new Surface({
             size: [undefined, 35],
-            content: "Copyright © 2014, Angela Collins",
+            content: "Copyright © 2014, Angela Collins &nbsp; &nbsp; <a class='small' href='/impressum.html'>Impressum</a>",
             classes: ["black-bg"],
             properties: {
                 lineHeight: "35px",

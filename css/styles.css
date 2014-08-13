@@ -136,7 +136,7 @@ p, pre, ul {
   margin-bottom: 25px;
 }
 
-small {
+.small {
   font-size: 9px;
   line-height: 9px;
 }

@@ -11,6 +11,7 @@ define(function(require, exports, module) {
 
     function AppView() {
         View.apply(this, arguments);
+        var contentView = new ContentView();
 
         this.layout = new HeaderFooterLayout({
             headerSize: 300,
@@ -18,10 +19,14 @@ define(function(require, exports, module) {
         });
 
         this.layout.header.add(new SlideshowView());
-        this.layout.content.add(new ContentView());
+        this.layout.content.add(contentView);
         this.layout.footer.add(new FooterView());
 
-        this.buttons = new ButtonView();
+        this.buttonView = new ButtonView();
+        // Allow the content view to react to events from the ButtonView
+        this.buttonView.on("activateContent", function(m) {
+            contentView.setContentFor(m);
+        });
     }
 
     AppView.prototype = Object.create(View.prototype);

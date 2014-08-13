@@ -16,7 +16,7 @@ define(function(require, exports, module) {
         // Applies View's constructor function to ContentView class
         View.apply(this, arguments);
 
-        var content = TextData['angela'];
+        var content = TextData['About Angela'];
 
         // Backgrounds
         this.add(new Surface({
@@ -31,7 +31,7 @@ define(function(require, exports, module) {
         }));
 
         // Text
-        var contentSurface = new Surface({
+        this.contentSurface = new Surface({
             size: [500, 100],
             classes: ["grey-bg"],
             content: content,
@@ -44,7 +44,7 @@ define(function(require, exports, module) {
         var centerModifier = new StateModifier({
             origin: [0.5, 0.2]
         });
-        this.add(centerModifier).add(contentSurface);
+        this.add(centerModifier).add(this.contentSurface);
     }
 
     // Establishes prototype chain for ContentView class to inherit from View
@@ -55,6 +55,9 @@ define(function(require, exports, module) {
     ContentView.DEFAULT_OPTIONS = {};
 
     // Define your helper functions and prototype methods here
+    ContentView.prototype.setContentFor = function(section) {
+        this.contentSurface.setContent(TextData[section]);
+    };
 
     module.exports = ContentView;
 });

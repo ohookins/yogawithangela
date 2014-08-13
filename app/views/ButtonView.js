@@ -10,6 +10,7 @@ define(function(require, exports, module) {
     var Transform = require('famous/core/Transform');
     var Modifier = require('famous/core/Modifier');
     var Transitionable = require('famous/transitions/Transitionable');
+    var TextData = require('data/TextData');
 
     // Constructor function for our ButtonView class
     function ButtonView() {
@@ -20,13 +21,7 @@ define(function(require, exports, module) {
         this.horizOffset     = -400;
         this.offsetIncrement = 200;
         this.vertOffset      = 315;
-        this.buttonLabels    = [
-            "About Angela",
-            "About Endorphin",
-            "Location",
-            "Schedule",
-            "Impressum"
-        ];
+        this.buttonLabels    = Object.keys(TextData);
         this.buttons = [];
         this.modifiers = [];
 
@@ -87,6 +82,9 @@ define(function(require, exports, module) {
             // Now make the current button look clicked.
             modifier.opacityFrom(0.5);
             button.addClass("button-clicked");
+
+            // And emit an event for changing the content
+            this._eventOutput.emit("activateContent", this.buttonLabels[buttonID]);
         }.bind(this));
 
         this.add(modifier).add(button);

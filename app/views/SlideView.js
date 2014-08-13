@@ -24,7 +24,6 @@ define(function(require, exports, module) {
         this.slideDuration      = 5000;
         this.fadeOutDuration    = 1000;
         
-
         _createImage.call(this);
     }
 

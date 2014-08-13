@@ -7,5 +7,5 @@ define(function(require, exports, module) {
     // instantiates AppView
     var appView = new AppView();
     mainContext.add(appView.layout);
-    mainContext.add(appView.buttons);
+    mainContext.add(appView.buttonView);
 });
