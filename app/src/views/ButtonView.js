@@ -3,10 +3,9 @@
 // define this module in Require.JS
 define(function(require, exports, module) {
 
-    // Import additional modules to be used in this view 
+    // Import additional modules to be used in this view
     var View = require('famous/core/View');
     var Surface = require('famous/core/Surface');
-    var ImageSurface = require('famous/surfaces/ImageSurface');
     var Transform = require('famous/core/Transform');
     var Modifier = require('famous/core/Modifier');
     var Transitionable = require('famous/transitions/Transitionable');
@@ -25,9 +24,8 @@ define(function(require, exports, module) {
         this.buttons = [];
         this.modifiers = [];
 
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < 5; i++)
             _createButton.call(this, i);
-        }
     }
 
     // Establishes prototype chain for ButtonView class to inherit from View
@@ -39,11 +37,11 @@ define(function(require, exports, module) {
 
     // Define your helper functions and prototype methods here
     function _createButton(buttonID) {
-        var buttonHorizOffset = this.horizOffset + buttonID*this.offsetIncrement,
-            initialVertOffset = 150 -buttonID*50,
-            finalVertOffset   = this.vertOffset;
+        var buttonHorizOffset = this.horizOffset + buttonID*this.offsetIncrement;
+        var initialVertOffset = 150 -buttonID*50;
+        var finalVertOffset   = this.vertOffset;
+        var transitionable    = new Transitionable(initialVertOffset);
 
-        var transitionable = new Transitionable(initialVertOffset);
         transitionable.set(
             finalVertOffset,
             {
@@ -54,16 +52,18 @@ define(function(require, exports, module) {
 
         var modifier = new Modifier({
             origin: [0.5, 0],
-            transform: function() { return Transform.translate(buttonHorizOffset, transitionable.get()); }
+            transform: function() {
+                return Transform.translate(buttonHorizOffset, transitionable.get());
+            }
         });
         this.modifiers.push(modifier);
 
         var button = new Surface({
             content: this.buttonLabels[buttonID],
             size: [195, 30],
-            classes: ["button"],
+            classes: ['button'],
             properties: {
-                textAlign: "center"
+                textAlign: 'center'
             }
         });
         this.buttons.push(button);
@@ -76,23 +76,22 @@ define(function(require, exports, module) {
             });
             // Remove clicked pointer type
             this.buttons.forEach(function(b) {
-                b.removeClass("button-clicked");
+                b.removeClass('button-clicked');
             });
 
             // Now make the current button look clicked.
             modifier.opacityFrom(0.5);
-            button.addClass("button-clicked");
+            button.addClass('button-clicked');
 
             // And emit an event for changing the content
-            this._eventOutput.emit("activateContent", this.buttonLabels[buttonID]);
+            this._eventOutput.emit('activateContent', this.buttonLabels[buttonID]);
         }.bind(this));
 
         this.add(modifier).add(button);
 
         // When the page is loaded, the first button is always clicked
-        if (buttonID === 0) {
+        if (buttonID === 0)
             button.emit('click');
-        }
     }
 
     module.exports = ButtonView;

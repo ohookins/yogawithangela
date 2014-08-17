@@ -20,6 +20,7 @@
         "new-parens": 2,
         "no-ternary": 0,
         "no-unused-vars": [1, {"vars": "local", "args": "none"}],
+        "no-use-before-define": 0,
         "quotes": [2, "single"],
         "one-var": 0,
         "space-infix-ops": 0,

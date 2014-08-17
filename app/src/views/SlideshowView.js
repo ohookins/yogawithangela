@@ -3,7 +3,7 @@
 // define this module in Require.JS
 define(function(require, exports, module) {
 
-    // Import additional modules to be used in this view 
+    // Import additional modules to be used in this view
     var View = require('famous/core/View');
     var Surface = require('famous/core/Surface');
     var ContainerSurface = require('famous/surfaces/ContainerSurface');
@@ -41,22 +41,21 @@ define(function(require, exports, module) {
 
         // For all but the last slide we do a fadeout after the slide
         slideView.on('slideDone', function() {
-            if (slideIndex < (SlideData.imageURLs.length-1)) {
+            if (slideIndex < (SlideData.imageURLs.length-1))
                 slideView.fadeOut();
-            } else {
+            else
                 this.container.add(new TexttitleView());
-            }
         }.bind(this));
 
         // Display the next slide in the slideshow when the fadeout is done
         slideView.on('fadeOutDone', function() {
-            this.showSlide(slideIndex + 1)
+            this.showSlide(slideIndex + 1);
         }.bind(this));
 
         this.renderNode.set(slideView);
     };
 
-    function _createImages() {    
+    function _createImages() {
         this.container = new ContainerSurface({
             size: [1024, 300],
             properties: {
@@ -69,7 +68,7 @@ define(function(require, exports, module) {
             transform: Transform.translate(0,0,1)
         })).add(new Surface({
             size: [undefined, undefined],
-            classes: ["black-bg"]
+            classes: ['black-bg']
         }));
 
         // RenderNode for swapping content

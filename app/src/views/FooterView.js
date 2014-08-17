@@ -3,7 +3,7 @@
 // define this module in Require.JS
 define(function(require, exports, module) {
 
-    // Import additional modules to be used in this view 
+    // Import additional modules to be used in this view
     var View = require('famous/core/View');
     var Surface = require('famous/core/Surface');
 
@@ -14,11 +14,11 @@ define(function(require, exports, module) {
 
         this.add(new Surface({
             size: [undefined, 35],
-            content: "Copyright © 2014, Angela Collins &nbsp; &nbsp; <a class='small' href='/impressum.html'>Impressum</a>",
-            classes: ["black-bg"],
+            content: 'Copyright © 2014, Angela Collins &nbsp; &nbsp; <a class=\'small\' href=\'/impressum.html\'>Impressum</a>',
+            classes: ['black-bg'],
             properties: {
-                lineHeight: "35px",
-                textAlign: "center"
+                lineHeight: '35px',
+                textAlign: 'center'
             }
         }));
     }

@@ -3,11 +3,12 @@
 // define this module in Require.JS
 define(function(require, exports, module) {
 
-    // Import additional modules to be used in this view 
+    // Import additional modules to be used in this view
     var View = require('famous/core/View');
-    var Surface = require('famous/core/Surface');
-    var Transform = require('famous/core/Transform');
-    var StateModifier = require('famous/modifiers/StateModifier');
+    // Uncomment the modules below that you need to use.
+    //var Surface = require('famous/core/Surface');
+    //var Transform = require('famous/core/Transform');
+    //var StateModifier = require('famous/modifiers/StateModifier');
 
     // Constructor function for our EmptyView class
     function EmptyView() {

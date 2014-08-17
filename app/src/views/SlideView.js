@@ -3,12 +3,12 @@
 // define this module in Require.JS
 define(function(require, exports, module) {
 
-    // Import additional modules to be used in this view 
+    // Import additional modules to be used in this view
     var View = require('famous/core/View');
     var ImageSurface = require('famous/surfaces/ImageSurface');
     var Transform = require('famous/core/Transform');
     var Modifier = require('famous/core/Modifier');
-    var Transitionable = require("famous/transitions/Transitionable");
+    var Transitionable = require('famous/transitions/Transitionable');
 
     // Constructor function for our SlideView class
     function SlideView(image) {
@@ -23,7 +23,7 @@ define(function(require, exports, module) {
         this.fadeInDuration     = 1000;
         this.slideDuration      = 5000;
         this.fadeOutDuration    = 1000;
-        
+
         _createImage.call(this);
     }
 
@@ -58,7 +58,9 @@ define(function(require, exports, module) {
                 duration: this.slideDuration,
                 curve: 'easeInOut'
             },
-            function() { this._eventOutput.emit('slideDone', this.imageName) }.bind(this)
+            function() {
+                this._eventOutput.emit('slideDone', this.imageName);
+            }.bind(this)
         );
 
         this.dynamicModifier.transformFrom(function() {
@@ -73,7 +75,9 @@ define(function(require, exports, module) {
             {
                 duration: this.fadeOutDuration
             },
-            function() { this._eventOutput.emit('fadeOutDone', this.imageName) }.bind(this)
+            function() {
+                this._eventOutput.emit('fadeOutDone', this.imageName);
+            }.bind(this)
         );
 
         this.dynamicModifier.opacityFrom(function() {
@@ -95,7 +99,7 @@ define(function(require, exports, module) {
         this.dynamicModifier = new Modifier();
         this.add(posModifier).add(this.dynamicModifier).add(imageSurface);
         this.fadeIn();
-    };
+    }
 
     module.exports = SlideView;
 });

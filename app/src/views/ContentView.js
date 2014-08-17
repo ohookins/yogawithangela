@@ -3,10 +3,9 @@
 // define this module in Require.JS
 define(function(require, exports, module) {
 
-    // Import additional modules to be used in this view 
+    // Import additional modules to be used in this view
     var View = require('famous/core/View');
     var Surface = require('famous/core/Surface');
-    var Transform = require('famous/core/Transform');
     var StateModifier = require('famous/modifiers/StateModifier');
 
     var TextData = require('data/TextData');
@@ -21,22 +20,22 @@ define(function(require, exports, module) {
         // Backgrounds
         this.add(new Surface({
             size: [undefined, undefined],
-            classes: ["black-bg"]
+            classes: ['black-bg']
         }));
         this.add(new StateModifier({
             origin: [0.5, 0.5]
         })).add(new Surface({
             size: [1024, undefined],
-            classes: ["grey-bg"]
+            classes: ['grey-bg']
         }));
 
         // Text
         this.contentSurface = new Surface({
             size: [500, 100],
-            classes: ["grey-bg"],
+            classes: ['grey-bg'],
             content: content,
             properties: {
-                textAlign: "center"
+                textAlign: 'center'
             }
         });
 

@@ -3,7 +3,7 @@
 // define this module in Require.JS
 define(function(require, exports, module) {
 
-    // Import additional modules to be used in this view 
+    // Import additional modules to be used in this view
     var View = require('famous/core/View');
     var Surface = require('famous/core/Surface');
     var Transform = require('famous/core/Transform');
@@ -19,7 +19,7 @@ define(function(require, exports, module) {
         // Static position translation to put it in front
         var position = new Modifier({
             transform: Transform.translate(0, 0, 2)
-        })
+        });
 
         // Smooth opacity transition
         var transitionable = new Transitionable(0.0);
@@ -32,7 +32,7 @@ define(function(require, exports, module) {
             content: '<h1>Endorphin Yoga</h1>',
             classes: ['medium-grey'],
             properties: {
-                textAlign: "center"
+                textAlign: 'center'
             }
         });
         this.add(position).add(opacity).add(surface);

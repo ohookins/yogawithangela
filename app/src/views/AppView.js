@@ -24,7 +24,7 @@ define(function(require, exports, module) {
 
         this.buttonView = new ButtonView();
         // Allow the content view to react to events from the ButtonView
-        this.buttonView.on("activateContent", function(m) {
+        this.buttonView.on('activateContent', function(m) {
             contentView.setContentFor(m);
         });
     }
