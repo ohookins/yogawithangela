@@ -14,7 +14,9 @@ define(function(require, exports, module) {
 
         this.add(new Surface({
             size: [undefined, 35],
-            content: 'Copyright © 2014, Angela Collins &nbsp; &nbsp; <a class=\'small\' href=\'/impressum.html\'>Impressum</a>',
+            // Used to have the copyright symbol in the following string, but
+            // Uglify seems to screw it up. FIXME
+            content: 'Copyright 2014, Angela Collins &nbsp; &nbsp; <a class=\'small\' href=\'/impressum.html\'>Impressum</a>',
             classes: ['black-bg'],
             properties: {
                 lineHeight: '35px',
