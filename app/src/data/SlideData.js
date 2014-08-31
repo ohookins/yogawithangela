@@ -2,29 +2,32 @@ define(function(require, exports, module) {
     var SlideData = {};
 
     SlideData.imageURLs = [
+        { url: '/content/images/8274-web.jpg',
+          startOffset: -100,
+          endOffset: -350,
+          y: 683
+        },
+        { url: '/content/images/8526-web.jpg',
+          startOffset: 0,
+          endOffset: -200,
+          y: 615
+        },
+        { url: '/content/images/8573-web.jpg',
+          startOffset: 0,
+          endOffset: -370,
+          y: 683
+        },
         { url: '/content/images/9065-web.jpg',
           startOffset: -150,
-          endOffset: -300
+          endOffset: -300,
+          y: 694
         },
-        { url: '/content/images/9078-web.jpg',
-          startOffset: -100,
-          endOffset: -270
-        },
-        { url: '/content/images/9081-web.jpg',
-          startOffset: -150,
-          endOffset: -320
-        },
-        { url: '/content/images/9083-web.jpg',
-          startOffset: -50,
-          endOffset: -380
-        },
-        { url: '/content/images/9089-web.jpg',
-          startOffset: -80,
-          endOffset: -330
+        { url: '/content/images/9027-web.jpg',
+          startOffset: 0,
+          endOffset: -250,
+          y: 698
         }
     ];
-    SlideData.imageHeight = 350;
-    SlideData.imageWidth = 500;
 
     module.exports = SlideData;
 });

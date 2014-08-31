@@ -20,6 +20,7 @@ define(function(require, exports, module) {
         this.imageURL           = image.url;
         this.startOffset        = image.startOffset;
         this.endOffset          = image.endOffset;
+        this.y                  = image.y;
         this.fadeInDuration     = 1000;
         this.slideDuration      = 5000;
         this.fadeOutDuration    = 1000;
@@ -87,7 +88,7 @@ define(function(require, exports, module) {
 
     function _createImage() {
         var imageSurface = new ImageSurface({
-                size: [1024, 700]
+                size: [1024, this.y]
             });
         imageSurface.setContent(this.imageURL);
 
