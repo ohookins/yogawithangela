@@ -18,7 +18,7 @@ define(function(require, exports, module) {
 
         // Static position translation to put it in front
         var position = new Modifier({
-            transform: Transform.translate(0, 0, 2)
+            transform: Transform.translate(0, 110, 2)
         });
 
         // Smooth opacity transition

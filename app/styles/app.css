@@ -20,7 +20,7 @@ a {
 }
 
 .medium-grey {
-  color: #878785;
+  color: #707070;
 }
 
 .red-bg {
@@ -76,6 +76,7 @@ h1 {
   font-size: 100px;
   line-height: 109px;
   margin-bottom: 67px;
+  word-spacing: 300px;
 }
 
 h2 {

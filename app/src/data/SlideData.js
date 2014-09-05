@@ -22,10 +22,10 @@ define(function(require, exports, module) {
           endOffset: -300,
           y: 694
         },
-        { url: '/content/images/9027-web.jpg',
+        { url: '/content/images/9029-web.jpg',
           startOffset: 0,
-          endOffset: -250,
-          y: 698
+          endOffset: -240,
+          y: 720
         }
     ];
 
