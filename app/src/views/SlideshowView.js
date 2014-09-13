@@ -5,7 +5,6 @@ define(function(require, exports, module) {
 
     // Import additional modules to be used in this view
     var View = require('famous/core/View');
-    var Surface = require('famous/core/Surface');
     var ContainerSurface = require('famous/surfaces/ContainerSurface');
     var Modifier = require('famous/core/Modifier');
     var Transform = require('famous/core/Transform');
@@ -62,14 +61,6 @@ define(function(require, exports, module) {
                 overflow: 'hidden'
             }
         });
-
-        // Black background behind photos
-        this.add(new Modifier({
-            transform: Transform.translate(0,0,1)
-        })).add(new Surface({
-            size: [undefined, undefined],
-            classes: ['black-bg']
-        }));
 
         // RenderNode for swapping content
         this.renderNode = new RenderNode();

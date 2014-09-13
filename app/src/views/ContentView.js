@@ -18,10 +18,6 @@ define(function(require, exports, module) {
         var content = TextData['About Angela'];
 
         // Backgrounds
-        this.add(new Surface({
-            size: [undefined, undefined],
-            classes: ['black-bg']
-        }));
         this.add(new StateModifier({
             origin: [0.5, 0.5]
         })).add(new Surface({
@@ -31,17 +27,22 @@ define(function(require, exports, module) {
 
         // Text
         this.contentSurface = new Surface({
-            size: [500, 100],
-            classes: ['grey-bg'],
+            size: [512, undefined],
+            classes: ['grey-bg', 'scrollable'],
             content: content,
             properties: {
                 textAlign: 'center'
             }
         });
+        this.contentSurface.originalCommit = this.contentSurface.commit;
+        this.contentSurface.commit = function(context) {
+            context.size = [context.size[0], context.size[1]-50];
+            return this.originalCommit(context);
+        };
 
         // Center it in the content view
         var centerModifier = new StateModifier({
-            origin: [0.5, 0.2]
+            origin: [0.5, 1.0]
         });
         this.add(centerModifier).add(this.contentSurface);
     }

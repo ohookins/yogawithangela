@@ -4,7 +4,7 @@ body {
 }
 
 .main {
-  background-color: white;
+  background-color: black;
 }
 
 a {
@@ -123,6 +123,10 @@ pre {
   border-radius: 5px;
   padding: 27px 18px;
   overflow-x: scroll;
+}
+
+.scrollable {
+  overflow-y: scroll;
 }
 
 ul {
