@@ -7,6 +7,7 @@ define(function(require, exports, module) {
     var View = require('famous/core/View');
     var Surface = require('famous/core/Surface');
     var StateModifier = require('famous/modifiers/StateModifier');
+    var Utility = require('famous/utilities/Utility');
 
     var TextData = require('data/TextData');
 
@@ -14,8 +15,6 @@ define(function(require, exports, module) {
     function ContentView() {
         // Applies View's constructor function to ContentView class
         View.apply(this, arguments);
-
-        var content = TextData['About Angela'];
 
         // Backgrounds
         this.add(new StateModifier({
@@ -29,7 +28,7 @@ define(function(require, exports, module) {
         this.contentSurface = new Surface({
             size: [512, undefined],
             classes: ['grey-bg', 'scrollable'],
-            content: content,
+            content: '',
             properties: {
                 textAlign: 'center'
             }
@@ -45,6 +44,13 @@ define(function(require, exports, module) {
             origin: [0.5, 1.0]
         });
         this.add(centerModifier).add(this.contentSurface);
+
+        // Deferred loading of content
+        var url = '/content/text/' + TextData['About Angela'] + '.html';
+        Utility.loadURL(url, function(data) {
+            this.contentSurface.setContent(data);
+        }.bind(this));
+
     }
 
     // Establishes prototype chain for ContentView class to inherit from View
@@ -56,7 +62,11 @@ define(function(require, exports, module) {
 
     // Define your helper functions and prototype methods here
     ContentView.prototype.setContentFor = function(section) {
-        this.contentSurface.setContent(TextData[section]);
+        // Deferred loading of content
+        var url = '/content/text/' + TextData[section] + '.html';
+        Utility.loadURL(url, function(data) {
+            this.contentSurface.setContent(data);
+        }.bind(this));
     };
 
     module.exports = ContentView;
