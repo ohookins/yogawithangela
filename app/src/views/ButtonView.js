@@ -38,23 +38,23 @@ define(function(require, exports, module) {
     // Define your helper functions and prototype methods here
     function _createButton(buttonID) {
         var buttonHorizOffset = this.horizOffset + buttonID*this.offsetIncrement;
-        var initialVertOffset = 150 -buttonID*50;
-        var finalVertOffset   = this.vertOffset;
-        var transitionable    = new Transitionable(initialVertOffset);
+        var buttonVertOffset  = this.vertOffset;
 
-        transitionable.set(
-            finalVertOffset,
+        // Transitionable for the opacity fade-in
+        var fadeInTransitionable = new Transitionable(0.0);
+        fadeInTransitionable.set(
+            1.0,
             {
-                duration: 3000,
-                curve: 'easeInOut'
+                duration: 500 + 250 * buttonID
             }
         );
 
         var modifier = new Modifier({
             origin: [0.5, 0],
-            transform: function() {
-                return Transform.translate(buttonHorizOffset, transitionable.get());
-            }
+            transform: Transform.translate(buttonHorizOffset, buttonVertOffset),
+            opacity: function(t) {
+                return fadeInTransitionable.get(t);
+            }.bind(this)
         });
         this.modifiers.push(modifier);
 
