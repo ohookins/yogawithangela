@@ -3,7 +3,7 @@ define(function(require, exports, module) {
       'About Angela': 'angela',
       'About Endorphin': 'soon',
       'Reviews': 'reviews',
-      'Schedule': 'soon',
+      'Schedule': 'schedule',
       'Contact': 'contact'
     };
 

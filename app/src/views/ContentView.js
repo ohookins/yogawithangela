@@ -62,6 +62,13 @@ define(function(require, exports, module) {
 
     // Define your helper functions and prototype methods here
     ContentView.prototype.setContentFor = function(section) {
+        // FIXME: Hacky workaround for schedule size
+        this.contentSurface.setContent('');
+        if (TextData[section] === 'schedule')
+            this.contentSurface.setSize([1024, undefined]);
+        else
+            this.contentSurface.setSize([512, undefined]);
+
         // Deferred loading of content
         var url = '/content/text/' + TextData[section] + '.html';
         Utility.loadURL(url, function(data) {
