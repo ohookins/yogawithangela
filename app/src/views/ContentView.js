@@ -26,7 +26,7 @@ define(function(require, exports, module) {
 
         // Text
         this.contentSurface = new Surface({
-            size: [512, undefined],
+            size: [768, undefined],
             classes: ['grey-bg', 'scrollable'],
             content: '',
             properties: {
@@ -67,7 +67,7 @@ define(function(require, exports, module) {
         if (TextData[section] === 'schedule')
             this.contentSurface.setSize([1024, undefined]);
         else
-            this.contentSurface.setSize([512, undefined]);
+            this.contentSurface.setSize([768, undefined]);
 
         // Deferred loading of content
         var url = '/content/text/' + TextData[section] + '.html';

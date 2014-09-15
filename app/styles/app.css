@@ -101,7 +101,7 @@ h2, h3, h4, h5, h6 {
 }
 
 p {
-  max-width: 522px;
+  max-width: 768px;
 }
 
 h5 {
@@ -138,7 +138,12 @@ code {
 }
 
 p, pre, ul {
-  margin-bottom: 25px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.quote {
+  font-style: italic;
 }
 
 .small {
