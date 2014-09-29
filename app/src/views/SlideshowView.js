@@ -10,7 +10,6 @@ define(function(require, exports, module) {
     var Transform = require('famous/core/Transform');
     var Surface = require('famous/core/Surface');
     var Utility = require('famous/utilities/Utility');
-    var jquery = require('jquery');
 
     // Individual element class
     var TexttitleView = require('views/TexttitleView');
@@ -57,7 +56,7 @@ define(function(require, exports, module) {
             this.carousel.setContent(data);
 
             // FIXME: This is the mother of all awful hacks
-            var i = window.setInterval(function(){
+            var i = window.setInterval(function() {
                 document.getElementsByClassName('right')[0].click();
             }, 5000);
             window.setTimeout(function() {
