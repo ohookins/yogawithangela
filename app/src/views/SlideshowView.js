@@ -8,21 +8,17 @@ define(function(require, exports, module) {
     var ContainerSurface = require('famous/surfaces/ContainerSurface');
     var Modifier = require('famous/core/Modifier');
     var Transform = require('famous/core/Transform');
-    var RenderNode = require('famous/core/RenderNode');
-
-    // Image data
-    var SlideData = require('data/SlideData');
+    var Surface = require('famous/core/Surface');
+    var Utility = require('famous/utilities/Utility');
+    var jquery = require('jquery');
 
     // Individual element class
-    var SlideView = require('views/SlideView');
     var TexttitleView = require('views/TexttitleView');
 
     // Constructor function for our SlideshowView class
     function SlideshowView() {
         // Applies View's constructor function to SlideshowView class
         View.apply(this, arguments);
-
-        this.currentImage = 0;
 
         _createImages.call(this);
     }
@@ -35,25 +31,6 @@ define(function(require, exports, module) {
     SlideshowView.DEFAULT_OPTIONS = {};
 
     // Define your helper functions and prototype methods here
-    SlideshowView.prototype.showSlide = function(slideIndex) {
-        var slideView = new SlideView(SlideData.imageURLs[slideIndex]);
-
-        // For all but the last slide we do a fadeout after the slide
-        slideView.on('slideDone', function() {
-            if (slideIndex < (SlideData.imageURLs.length-1))
-                slideView.fadeOut();
-            else
-                this.container.add(new TexttitleView());
-        }.bind(this));
-
-        // Display the next slide in the slideshow when the fadeout is done
-        slideView.on('fadeOutDone', function() {
-            this.showSlide(slideIndex + 1);
-        }.bind(this));
-
-        this.renderNode.set(slideView);
-    };
-
     function _createImages() {
         this.container = new ContainerSurface({
             size: [1024, 300],
@@ -62,11 +39,31 @@ define(function(require, exports, module) {
             }
         });
 
-        // RenderNode for swapping content
-        this.renderNode = new RenderNode();
-        this.container.add(this.renderNode);
+        // Surface for Bootstrap carousel
+        this.carousel = new Surface({
+            size: [1024, 300],
+            content: ''
+        });
+        this.container.add(this.carousel);
 
-        this.showSlide(0);
+        // Text position with modifier
+        this.container.add(new Modifier({
+            transform: Transform.translate(0, 50)
+        })).add(new TexttitleView());
+
+        // Deferred loading of content
+        var url = '/content/text/carousel.html';
+        Utility.loadURL(url, function(data) {
+            this.carousel.setContent(data);
+
+            // FIXME: This is the mother of all awful hacks
+            var i = window.setInterval(function(){
+                document.getElementsByClassName('right')[0].click();
+            }, 5000);
+            window.setTimeout(function() {
+                window.clearInterval(i);
+            }, 30000);
+        }.bind(this));
 
         this.add(new Modifier({
             transform: Transform.translate(0,0,2),

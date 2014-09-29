@@ -50,7 +50,6 @@ define(function(require, exports, module) {
         Utility.loadURL(url, function(data) {
             this.contentSurface.setContent(data);
         }.bind(this));
-
     }
 
     // Establishes prototype chain for ContentView class to inherit from View
@@ -73,7 +72,32 @@ define(function(require, exports, module) {
         var url = '/content/text/' + TextData[section] + '.html';
         Utility.loadURL(url, function(data) {
             this.contentSurface.setContent(data);
+
+            // Activate Twitter feed
+            // FIXME: This is inherently shit and broken, noticeable if you
+            // click away from the contact page and then click to it again.
+            // Should put all info tabs in separate renderables that are
+            // swapped to the front and back but never removed from the DOM.
+            if (TextData[section] === 'contact')
+                this.activateTwitterFeed();
         }.bind(this));
+    };
+
+    ContentView.prototype.activateTwitterFeed = function() {
+        // This is just copied and pasted from Twitter's widget generator,
+        // and un-minified a bit for readability.
+        function twitter(d,s,id) {
+            var js;
+            var p = /^http:/.test(d.location) ? 'http' : 'https';
+
+            if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = p+'://platform.twitter.com/widgets.js';
+                document.head.appendChild(js);
+            }
+        }
+        twitter(document,'script','twitter-wjs');
     };
 
     module.exports = ContentView;
