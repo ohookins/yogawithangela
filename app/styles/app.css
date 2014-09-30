@@ -23,6 +23,10 @@ a {
   color: #707070;
 }
 
+.title-grey {
+  color: #505050;
+}
+
 .red-bg {
   color: white;
   background-color: #fa5c4f;
@@ -72,11 +76,11 @@ body, input {
 }
 
 h1 {
-  font-family: 'Cabin', sans-serif;
-  font-size: 100px;
+  font-family: 'Quattrocento', sans-serif;
+  font-weight: 700;
+  font-size: 80px;
   line-height: 109px;
-  margin-bottom: 67px;
-  word-spacing: 300px;
+  word-spacing: 420px;
 }
 
 h2 {

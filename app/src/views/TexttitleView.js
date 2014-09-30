@@ -18,7 +18,7 @@ define(function(require, exports, module) {
 
         // Static position translation to put it in front
         var position = new Modifier({
-            transform: Transform.translate(0, 110, 2)
+            transform: Transform.translate(0, 130, 2)
         });
 
         // Smooth opacity transition
@@ -30,7 +30,7 @@ define(function(require, exports, module) {
         var surface = new Surface({
             size: [undefined, undefined],
             content: '<h1>Endorphin Yoga</h1>',
-            classes: ['medium-grey'],
+            classes: ['title-grey'],
             properties: {
                 textAlign: 'center'
             }
