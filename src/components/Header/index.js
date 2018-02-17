@@ -23,7 +23,7 @@ const Header = () => (
             textDecoration: 'none',
           }}
         >
-          Gatsby
+          Yoga with Angela
         </Link>
       </h1>
     </div>
