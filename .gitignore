@@ -1,17 +1,8 @@
-# OS generated files #
-######################
-.DS_Store
-ehthumbs.db
-Icon?
-Thumbs.db
-
-# Node Files #
-##############
+# Project dependencies
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
-
-# Project Files #
-#################
-dist
-.tmp
-app/lib
-.yo-rc.json
+.cache/
+# Build directory
+public/
+.DS_Store
+yarn-error.log

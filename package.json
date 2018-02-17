@@ -1,45 +1,24 @@
 {
-  "name": "endorphin-yoga",
-  "description": "E.g. Seed project to get started with Famo.us.",
-  "version": "0.1.0",
-  "homepage": "https://github.com//endorphin-yoga",
-  "author": {
-    "name": "",
-    "url": "http://github.com//"
+  "name": "yogawithangela",
+  "description": "Yoga website",
+  "version": "0.2.0",
+  "author": "Oliver Hookins <ohookins@gmail.com>",
+  "homepage": "https://angela.yoga",
+  "dependencies": {
+    "gatsby": "^1.9.199",
+    "gatsby-link": "^1.6.37",
+    "gatsby-plugin-react-helmet": "^2.0.5",
+    "react-helmet": "^5.2.0"
   },
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com//endorphin-yoga.git"
-  },
-  "bugs": {
-    "url": "https://github.com//endorphin-yoga/issues"
-  },
-  "engines": {
-    "node": ">= 0.10.0"
+  "license": "Proprietary",
+  "main": "n/a",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "grunt": "~0.4.4",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-contrib-connect": "^0.8.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-contrib-copy": "^0.5.0",
-    "grunt-contrib-requirejs": "^0.4.3",
-    "grunt-contrib-htmlmin": "^0.3.0",
-    "grunt-contrib-concat": "^0.5.0",
-    "grunt-contrib-cssmin": "^0.10.0",
-    "grunt-contrib-uglify": "^0.5.0",
-    "grunt-rev": "^0.1.0",
-    "grunt-bower-requirejs": "^0.11.0",
-    "grunt-processhtml": "^0.3.3",
-    "grunt-usemin": "^2.1.1",
-    "grunt-eslint": "^0.6.0",
-    "grunt-jscs": "^0.6.0",
-    "grunt-robots-txt": "^0.3.0",
-    "load-grunt-config": "^0.12.0",
-    "time-grunt": "^0.4.0"
-  },
-  "scripts": {
-    "test": "grunt test"
+    "prettier": "^1.10.2"
   }
 }
