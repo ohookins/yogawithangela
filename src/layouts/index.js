@@ -3,18 +3,21 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
 import Header from '../components/Header'
+import Buttons from '../components/Buttons'
+import Footer from '../components/Footer'
 import './index.css'
 
 const TemplateWrapper = ({ children }) => (
   <div>
     <Helmet
-      title="Yoga with Angela"
+      title="Yoga With Angela"
       meta={[
         { name: 'description', content: 'Yoga classes with Angela Collins' },
         { name: 'keywords', content: 'yoga' },
       ]}
     />
     <Header />
+    <Buttons />
     <div
       style={{
         margin: '0 auto',
@@ -25,7 +28,9 @@ const TemplateWrapper = ({ children }) => (
     >
       {children()}
     </div>
+    <Footer />
   </div>
+
 )
 
 TemplateWrapper.propTypes = {
