@@ -9,21 +9,25 @@ const Header = () => (
       }}
     >
 
-      <h1 className='f1 f-headline-l fw8'>
+      <h1 className="f1 f-headline-l fw8 quattrocento">
         <Link
           to="/"
           style={{
             color: '#999999',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            textShadow: "1px 1px #555555"
           }}
         >
           Yoga with Angela
         </Link>
       </h1>
 
-      <blockquote className="ph0 mh0 measure-wide f5 lh-copy center">
-        <p className="washed-blue">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.        </p>
+      <blockquote className="ph0 mh0 measure-wide f5 lh-copy center cabin">
+        <p className="washed-blue" style={{
+          textShadow: "1px 1px #555555"
+        }}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
       </blockquote>
     </div>
 )

@@ -11,11 +11,18 @@ html {
 
 body {
     font-family: Cabin,sans-serif;
-    color: #eddddd;
+    color: #dddddd;
 }
 
 h1 {
-    font-family: Quattrocento,sans-serif;
     font-size: 2em;
     margin: .67em 0;
   }
+
+.quattrocento {
+    font-family: Quattrocento,sans-serif;
+}
+
+.cabin {
+    font-family: Cabin,sans-serif;
+}
