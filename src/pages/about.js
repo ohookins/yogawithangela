@@ -3,7 +3,7 @@ import React from 'react'
 const About = () => (
     <div className="white-90 cabin">
         <h2>About Angela</h2>
-        <div className="ph5">
+        <div className="ph5 lh-copy">
             <p>
             Angela grew up in Sydney, Australia, and first experienced Yoga at age 16 whilst working with a touring theatre company. She revisited Yoga technique alongside dance and contemporary theatre at University, but after giving birth to her son she began to really use Yoga practice in a healing capacity for mind, body and soul here in Berlin, Germany.
             </p>
@@ -15,7 +15,7 @@ const About = () => (
             </p>
         </div>
         <h2>About My Yoga Practice</h2>
-        <div className="ph5">
+        <div className="ph5 lh-copy">
             <p>
             Angela blends and incorporates expansive ideas from different Yoga traditions - Vinyasa, Forrest Yoga, Hatha, Yin, Yoga Therapy, and Body work schools - Alexander Technique, Feldenkrais, Butoh, Contemporary dance, Massage - with fields of the Psychology sciences and Energetic sciences to create dynamic classes that cater to the needs of individuals.
             </p>
