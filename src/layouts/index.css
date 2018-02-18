@@ -1,9 +1,9 @@
 /* Google Fonts */
-@import url('http://fonts.googleapis.com/css?family=Quattrocento:400,700');
-@import url('http://fonts.googleapis.com/css?family=Cabin:400,700');
+@import url('//fonts.googleapis.com/css?family=Quattrocento:400,700');
+@import url('//fonts.googleapis.com/css?family=Cabin:400,700');
 
 /* Tachyons */
-@import url('https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css');
+@import url('//unpkg.com/tachyons@4.9.1/css/tachyons.min.css');
 
 html {
   background-color: #222222;
