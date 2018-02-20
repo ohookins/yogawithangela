@@ -22,7 +22,7 @@ const TemplateWrapper = ({ children }) => (
       display: 'flex',
       justifyContent: 'center'
     }}>
-      <div className="fl w-60 bg-dark-gray pa3">
+      <div className="fl w-70 bg-dark-gray pa3">
         {children()}
       </div>
     </div>
