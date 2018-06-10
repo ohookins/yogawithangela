@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 class BlogPost extends Component {
     render() {
         const {
-            title
+            title,
+            bodyText
         } = this.props.data.contentfulPost;
         return (
-            <h1>
-                {title}
-            </h1>
+            <div>
+                <h1>{title}</h1>
+                <div dangerouslySetInnerHTML={{__html: bodyText.childMarkdownRemark.html}} />
+            </div>
         )
     }
 }
@@ -25,6 +27,11 @@ export const pageQuery = graphql`
         contentfulPost(slug: {eq: $slug}) {
             title
             slug
+            bodyText {
+                childMarkdownRemark {
+                    html
+                }
+            }
         }
     }
 `

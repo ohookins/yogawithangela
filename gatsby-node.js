@@ -28,7 +28,8 @@ exports.createPages = ({graphql, boundActionCreators}) => {
                         path: edge.node.slug,
                         component: blogPostTemplate,
                         context: {
-                            slug: edge.node.slug
+                            slug: edge.node.slug,
+                            bodyText: edge.node.bodyText,
                         }
                     })
                 });
